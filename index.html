@@ -30,24 +30,40 @@
     }
 
     body {
-      background-color: #f9fafb;
-      color: #111827;
+      background-color: #f8fafc;
+      color: #0f172a;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: flex-start;
       padding: 24px 12px 36px;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Fullscreen Celebration Canvas */
+    #celebrationCanvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 9999;
     }
 
     .form-container {
       width: 100%;
       max-width: 440px;
       background: #ffffff;
-      border: 1px solid #e5e7eb;
-      border-radius: 8px;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
       padding: 24px 20px 22px;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+      box-shadow: 0 4px 16px -2px rgba(15, 23, 42, 0.05), 0 2px 6px -1px rgba(15, 23, 42, 0.03);
+      position: relative;
+      z-index: 10;
+      transition: all 0.3s ease;
     }
 
     /* হেডার: এপ লোগো এবং শুধুমাত্র শিরোনাম "দাওয়াত" */
@@ -55,7 +71,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
+      gap: 11px;
       margin-bottom: 22px;
     }
 
@@ -64,14 +80,14 @@
       height: 36px;
       border-radius: 8px;
       object-fit: cover;
-      box-shadow: 0 2px 6px rgba(29, 78, 216, 0.22);
+      box-shadow: 0 2px 8px rgba(29, 78, 216, 0.25);
       flex-shrink: 0;
     }
 
     .page-title {
       font-size: 26px;
       font-weight: 700;
-      color: #111827;
+      color: #0f172a;
       line-height: 1;
       letter-spacing: -0.2px;
     }
@@ -84,12 +100,12 @@
       display: block;
       font-size: 13.5px;
       font-weight: 600;
-      color: #374151;
+      color: #334155;
       margin-bottom: 5px;
     }
 
     .required {
-      color: #dc2626;
+      color: #e11d48;
       margin-left: 2px;
       font-size: 12px;
     }
@@ -100,21 +116,21 @@
       height: 38px;
       padding: 6px 11px;
       font-size: 14.5px;
-      color: #111827;
+      color: #0f172a;
       background: #ffffff;
-      border: 1px solid #d1d5db;
+      border: 1px solid #cbd5e1;
       border-radius: 6px;
       outline: none;
       transition: border-color 0.15s ease, box-shadow 0.15s ease;
     }
 
     .form-input:focus {
-      border-color: #1d4ed8;
-      box-shadow: 0 0 0 2px rgba(29, 78, 216, 0.12);
+      border-color: #2563eb;
+      box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
     }
 
     .form-input::placeholder {
-      color: #9ca3af;
+      color: #94a3b8;
       font-size: 13.5px;
     }
 
@@ -128,7 +144,7 @@
     /* চিকন ড্রপডাউন */
     select.form-input {
       appearance: none;
-      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%2364748b' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
       background-position: right 8px center;
       background-repeat: no-repeat;
       background-size: 15px 15px;
@@ -145,21 +161,21 @@
     }
 
     .pill-item {
-      background: #f3f4f6;
-      border: 1px solid #e5e7eb;
+      background: #f1f5f9;
+      border: 1px solid #e2e8f0;
       border-radius: 4px;
       padding: 3px 9px;
       font-size: 12.5px;
       font-weight: 500;
-      color: #4b5563;
+      color: #475569;
       cursor: pointer;
       transition: all 0.12s ease;
       user-select: none;
     }
 
     .pill-item:hover {
-      background: #e5e7eb;
-      color: #111827;
+      background: #e2e8f0;
+      color: #0f172a;
     }
 
     .pill-item.selected {
@@ -188,41 +204,74 @@
     }
 
     .submit-btn:disabled {
-      background: #9ca3af;
+      background: #94a3b8;
       cursor: not-allowed;
     }
 
-    /* সফলতার নোটিশ */
+    /* সেলিব্রেশন ও সফলতার নোটিশ */
     .success-view {
       display: none;
       text-align: center;
-      padding: 20px 10px;
+      padding: 16px 8px;
+      animation: softFadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes softFadeIn {
+      0% {
+        opacity: 0;
+        transform: scale(0.96) translateY(8px);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+
+    .celebrate-glow {
+      width: 52px;
+      height: 52px;
+      margin: 0 auto 14px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #dbeafe 0%, #eff6ff 100%);
+      border: 1px solid #bfdbfe;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #1d4ed8;
+      box-shadow: 0 4px 16px rgba(29, 78, 216, 0.15);
+      animation: pulseGlow 2s infinite ease-in-out;
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { transform: scale(1); box-shadow: 0 4px 16px rgba(29, 78, 216, 0.15); }
+      50% { transform: scale(1.05); box-shadow: 0 6px 20px rgba(29, 78, 216, 0.28); }
     }
 
     .success-title {
-      font-size: 20px;
+      font-size: 24px;
       font-weight: 700;
       color: #1d4ed8;
       margin-bottom: 6px;
+      letter-spacing: -0.2px;
     }
 
     .success-desc {
-      font-size: 14.5px;
-      color: #4b5563;
-      line-height: 1.5;
-      margin-bottom: 18px;
+      font-size: 14px;
+      color: #475569;
+      line-height: 1.6;
+      margin-bottom: 20px;
     }
 
     .summary-card {
-      background: #f9fafb;
-      border: 1px solid #e5e7eb;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
       border-radius: 6px;
-      padding: 12px;
+      padding: 13px 14px;
       text-align: left;
       font-size: 13.5px;
-      color: #374151;
-      margin-bottom: 18px;
-      line-height: 1.6;
+      color: #334155;
+      margin-bottom: 20px;
+      line-height: 1.65;
     }
 
     .btn-new {
@@ -236,6 +285,7 @@
       border-radius: 6px;
       cursor: pointer;
       text-decoration: none;
+      transition: all 0.15s ease;
     }
 
     .btn-new:hover {
@@ -244,6 +294,8 @@
   </style>
 </head>
 <body>
+
+<canvas id="celebrationCanvas"></canvas>
 
 <div class="form-container">
   <!-- হেডার: লোগো ও দাওয়াত -->
@@ -309,10 +361,18 @@
     </form>
   </div>
 
-  <!-- সফলতার বার্তা -->
+  <!-- সেলিব্রেশন ও সফলতার বার্তা -->
   <div id="successSection" class="success-view">
-    <div class="success-title">তথ্য সংরক্ষিত হয়েছে</div>
-    <p class="success-desc">আপনার দাওয়াতি তথ্য সফলভাবে কেন্দ্রীয় সিস্টেমে জমা হয়েছে। জাযাকাল্লাহু খাইরান।</p>
+    <div class="celebrate-glow">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="20 6 9 17 4 12"></polyline>
+      </svg>
+    </div>
+    <div class="success-title">জাযাকাল্লাহু খাইরান</div>
+    <p class="success-desc">
+      আপনার তথ্যটি সফলভাবে সংরক্ষিত হয়েছে।<br />
+      দাওয়াতি মেহনতে আপনার এই ত্যাগ ও অবদানকে আল্লাহ তাআলা কবুল করুন।
+    </p>
     
     <div id="summaryCard" class="summary-card"></div>
 
@@ -655,6 +715,108 @@
     input.value = input.value.replace(/[০-৯]/g, d => map[d] || d);
   }
 
+  // ==========================================
+  // চতুর্দিক থেকে উৎসবমুখর সেলিব্রেশন ইফেক্ট
+  // ==========================================
+  function triggerCelebration() {
+    const canvas = document.getElementById('celebrationCanvas');
+    const ctx = canvas.getContext('2d');
+    const dpr = window.devicePixelRatio || 1;
+
+    canvas.width = window.innerWidth * dpr;
+    canvas.height = window.innerHeight * dpr;
+    ctx.scale(dpr, dpr);
+
+    const particles = [];
+    const colors = ['#1d4ed8', '#2563eb', '#38bdf8', '#0284c7', '#f59e0b', '#10b981', '#ffffff'];
+    const totalCount = 140;
+
+    // চার কোণা ও দুই পাশ থেকে কণা নিক্ষেপ
+    function spawnBurst(originX, originY, angleMin, angleMax, speedMin, speedMax, count) {
+      for (let i = 0; i < count; i++) {
+        const angle = angleMin + Math.random() * (angleMax - angleMin);
+        const speed = speedMin + Math.random() * (speedMax - speedMin);
+        particles.push({
+          x: originX,
+          y: originY,
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed,
+          size: 4 + Math.random() * 5,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          rotation: Math.random() * 360,
+          rotationSpeed: (Math.random() - 0.5) * 8,
+          alpha: 1,
+          gravity: 0.16 + Math.random() * 0.08,
+          drag: 0.985,
+          shape: Math.random() > 0.4 ? 'rect' : 'circle'
+        });
+      }
+    }
+
+    const w = window.innerWidth;
+    const h = window.innerHeight;
+
+    // বাম ও ডান নিচ থেকে উপরে-ভেতরে
+    spawnBurst(0, h * 0.75, -Math.PI * 0.45, -Math.PI * 0.1, 7, 15, 35);
+    spawnBurst(w, h * 0.75, -Math.PI * 0.9, -Math.PI * 0.55, 7, 15, 35);
+
+    // দুই পাশ থেকে ভেতরে
+    spawnBurst(0, h * 0.35, -Math.PI * 0.25, Math.PI * 0.1, 6, 13, 25);
+    spawnBurst(w, h * 0.35, Math.PI * 0.9, Math.PI * 1.25, 6, 13, 25);
+
+    // ওপরের কেন্দ্র থেকে আলতো ঝরে পড়া
+    spawnBurst(w * 0.5, 0, Math.PI * 0.2, Math.PI * 0.8, 3, 9, 20);
+
+    let animationFrame;
+    const startTime = performance.now();
+
+    function render(currentTime) {
+      const elapsed = currentTime - startTime;
+      ctx.clearRect(0, 0, w, h);
+
+      for (let i = particles.length - 1; i >= 0; i--) {
+        const p = particles[i];
+        p.vx *= p.drag;
+        p.vy = p.vy * p.drag + p.gravity;
+        p.x += p.vx;
+        p.y += p.vy;
+        p.rotation += p.rotationSpeed;
+
+        if (elapsed > 2000) {
+          p.alpha -= 0.02;
+        }
+
+        if (p.alpha <= 0 || p.y > h + 20) {
+          particles.splice(i, 1);
+          continue;
+        }
+
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate((p.rotation * Math.PI) / 180);
+        ctx.globalAlpha = Math.max(0, p.alpha);
+        ctx.fillStyle = p.color;
+
+        if (p.shape === 'rect') {
+          ctx.fillRect(-p.size / 2, -p.size / 3, p.size, p.size * 0.7);
+        } else {
+          ctx.beginPath();
+          ctx.arc(0, 0, p.size * 0.4, 0, Math.PI * 2);
+          ctx.fill();
+        }
+        ctx.restore();
+      }
+
+      if (particles.length > 0 && elapsed < 4500) {
+        animationFrame = requestAnimationFrame(render);
+      } else {
+        ctx.clearRect(0, 0, w, h);
+      }
+    }
+
+    requestAnimationFrame(render);
+  }
+
   async function submitForm(e) {
     e.preventDefault();
 
@@ -712,6 +874,9 @@
       document.getElementById('formSection').style.display = 'none';
       document.getElementById('successSection').style.display = 'block';
       window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      // চতুর্দিক থেকে উৎসবমুখর সেলিব্রেশন ইফেক্ট শুরু
+      triggerCelebration();
 
     } catch (err) {
       alert('তথ্য জমা দেওয়া সম্ভব হয়নি। ইন্টারনেট সংযোগ পরীক্ষা করে পুনরায় চেষ্টা করুন।');
