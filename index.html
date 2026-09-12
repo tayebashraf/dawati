@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="bn" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>দাওয়াতি কর্মী নিবন্ধন — আহবাব ম্যানেজমেন্ট সিস্টেম</title>
+  <meta name="description" content="হজরতজী মাওলানা সাদ কান্ধলভী (দা.বা.)-এর তত্ত্বাবধানে দাওয়াতি সাথী ও কর্মীদের তথ্য নিবন্ধন" />
+  <meta property="og:title" content="দাওয়াতি কর্মী নিবন্ধন ফরম" />
+  <meta property="og:description" content="দাওয়াতি সাথী ও কর্মীদের অনলাইন তথ্য নিবন্ধন ফরম" />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#047857" />
+
+  <!-- Google Fonts: Hind Siliguri -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #047857;
+      --primary-hover: #065f46;
+      --primary-light: #ecfdf5;
+      --accent: #d97706;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --border-focus: #10b981;
+      --ring: rgba(16, 185, 129, 0.2);
+      --radius: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Hind Siliguri', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background: linear-gradient(180deg, #f0fdf4 0%, #f8fafc 100%);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 16px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 500px;
+      margin: 0 auto;
+      padding-bottom: 32px;
+    }
+
+    /* Header */
+    .brand-card {
+      background: linear-gradient(135deg, #047857 0%, #064e3b 100%);
+      color: #ffffff;
+      border-radius: var(--radius);
+      padding: 24px 20px;
+      text-align: center;
+      box-shadow: 0 10px 25px -5px rgba(4, 120, 87, 0.25), 0 8px 10px -6px rgba(4, 120, 87, 0.1);
+      margin-bottom: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .brand-card::after {
+      content: '';
+      position: absolute;
+      top: -40px;
+      right: -40px;
+      width: 120px;
+      height: 120px;
+      background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 70%);
+      border-radius: 50%;
+    }
+
+    .brand-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(8px);
+      padding: 4px 12px;
+      border-radius: 9999px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      margin-bottom: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .brand-title {
+      font-size: 22px;
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 6px;
+    }
+
+    .brand-subtitle {
+      font-size: 13px;
+      color: #d1fae5;
+      line-height: 1.5;
+      font-weight: 400;
+    }
+
+    /* Form Card */
+    .form-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 24px 20px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+      border: 1px solid var(--border);
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      color: #334155;
+      margin-bottom: 6px;
+    }
+
+    .form-label .required {
+      color: #ef4444;
+      margin-left: 2px;
+    }
+
+    .input-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .input-icon {
+      position: absolute;
+      left: 14px;
+      color: #94a3b8;
+      font-size: 16px;
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .form-control {
+      width: 100%;
+      height: 48px;
+      padding: 10px 14px 10px 42px;
+      font-size: 15px;
+      color: var(--text-main);
+      background-color: #f8fafc;
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      outline: none;
+      transition: all 0.2s ease;
+    }
+
+    .form-control:focus {
+      background-color: #ffffff;
+      border-color: var(--border-focus);
+      box-shadow: 0 0 0 4px var(--ring);
+    }
+
+    .form-control::placeholder {
+      color: #94a3b8;
+      font-size: 14px;
+    }
+
+    /* Chip selector for professions */
+    .chips-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .chip-btn {
+      background: #f1f5f9;
+      border: 1px solid #e2e8f0;
+      border-radius: 9999px;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 500;
+      color: #475569;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.15s ease;
+    }
+
+    .chip-btn:hover {
+      background: #e2e8f0;
+    }
+
+    .chip-btn.active {
+      background: #047857;
+      color: #ffffff;
+      border-color: #047857;
+      box-shadow: 0 2px 6px rgba(4, 120, 87, 0.25);
+    }
+
+    /* Grid for Location Selectors */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    select.form-control {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%2364748b' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+      background-position: right 10px center;
+      background-repeat: no-repeat;
+      background-size: 18px 18px;
+      padding-right: 32px;
+      cursor: pointer;
+    }
+
+    /* Submit Button */
+    .btn-submit {
+      width: 100%;
+      height: 52px;
+      background: linear-gradient(135deg, #047857 0%, #059669 100%);
+      color: #ffffff;
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 4px 12px rgba(4, 120, 87, 0.3);
+      transition: all 0.2s ease;
+      margin-top: 24px;
+    }
+
+    .btn-submit:hover:not(:disabled) {
+      background: linear-gradient(135deg, #065f46 0%, #047857 100%);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(4, 120, 87, 0.4);
+    }
+
+    .btn-submit:active:not(:disabled) {
+      transform: translateY(0);
+    }
+
+    .btn-submit:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+
+    /* Spinner */
+    .spinner {
+      width: 20px;
+      height: 20px;
+      border: 3px solid rgba(255, 255, 255, 0.3);
+      border-top-color: #ffffff;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Success Card */
+    .success-card {
+      display: none;
+      text-align: center;
+      padding: 36px 20px;
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05);
+    }
+
+    .success-icon {
+      width: 72px;
+      height: 72px;
+      background: #dcfce7;
+      color: #16a34a;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+      margin: 0 auto 20px;
+      animation: bounce 0.6s ease;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.15); }
+    }
+
+    .success-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: #15803d;
+      margin-bottom: 8px;
+    }
+
+    .success-desc {
+      font-size: 14px;
+      color: #64748b;
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+
+    .worker-summary-box {
+      background: #f8fafc;
+      border: 1px dashed #cbd5e1;
+      border-radius: 12px;
+      padding: 14px;
+      text-align: left;
+      font-size: 13px;
+      color: #334155;
+      margin-bottom: 24px;
+    }
+
+    .worker-summary-box div {
+      margin-bottom: 4px;
+    }
+
+    .btn-secondary {
+      width: 100%;
+      height: 48px;
+      background: #f1f5f9;
+      color: #334155;
+      border: 1px solid #cbd5e1;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+
+    .btn-secondary:hover {
+      background: #e2e8f0;
+    }
+
+    /* Footer */
+    .footer {
+      margin-top: 24px;
+      text-align: center;
+      font-size: 12px;
+      color: #94a3b8;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <!-- Header -->
+  <div class="brand-card">
+    <div class="brand-badge">
+      <span>🕌</span> আহবাব ম্যানেজমেন্ট সিস্টেম
+    </div>
+    <h1 class="brand-title">দাওয়াতি কর্মী নিবন্ধন</h1>
+    <p class="brand-subtitle">দাওয়াতি মেহনতের সার্বিক নজরদারি ও কর্মী ডাটাবেজ পোর্টালে আপনার তথ্য যুক্ত করুন</p>
+  </div>
+
+  <!-- Form -->
+  <div class="form-card" id="formContainer">
+    <form id="workerForm" onsubmit="handleSubmit(event)">
+      
+      <!-- Full Name -->
+      <div class="form-group">
+        <label class="form-label" for="workerName">পূর্ণ নাম <span class="required">*</span></label>
+        <div class="input-wrapper">
+          <span class="input-icon">👤</span>
+          <input type="text" id="workerName" class="form-control" placeholder="আপনার নাম লিখুন" required />
+        </div>
+      </div>
+
+      <!-- Profession -->
+      <div class="form-group">
+        <label class="form-label">পেশা নির্বাচন করুন <span class="required">*</span></label>
+        <div class="chips-container">
+          <button type="button" class="chip-btn" onclick="selectProfession('ইমাম ও খতিব', this)">🕌 ইমাম ও খতিব</button>
+          <button type="button" class="chip-btn" onclick="selectProfession('শিক্ষক / মুদাররিস', this)">📚 শিক্ষক / মুদাররিস</button>
+          <button type="button" class="chip-btn" onclick="selectProfession('ব্যবসায়ী', this)">💼 ব্যবসায়ী</button>
+          <button type="button" class="chip-btn" onclick="selectProfession('চাকরিজীবী', this)">🏢 চাকরিজীবী</button>
+          <button type="button" class="chip-btn" onclick="selectProfession('শিক্ষার্থী', this)">🎓 শিক্ষার্থী</button>
+          <button type="button" class="chip-btn" onclick="selectProfession('অন্যান্য', this)">✍️ অন্যান্য</button>
+        </div>
+        <div class="input-wrapper">
+          <span class="input-icon">💼</span>
+          <input type="text" id="workerProfession" class="form-control" placeholder="পেশা বিস্তারিত লিখুন" required />
+        </div>
+      </div>
+
+      <!-- Mobile Number -->
+      <div class="form-group">
+        <label class="form-label" for="workerMobile">ব্যক্তিগত মোবাইল নম্বর <span class="required">*</span></label>
+        <div class="input-wrapper">
+          <span class="input-icon">📱</span>
+          <input type="tel" id="workerMobile" class="form-control" placeholder="017XXXXXXXX" oninput="formatPhone(this)" required />
+        </div>
+      </div>
+
+      <!-- Location Section -->
+      <div class="form-group">
+        <label class="form-label">বিভাগ <span class="required">*</span></label>
+        <div class="input-wrapper">
+          <span class="input-icon">🗺️</span>
+          <select id="divisionSelect" class="form-control" onchange="handleDivisionChange()" required>
+            <option value="">বিভাগ নির্বাচন করুন</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="form-group">
+          <label class="form-label">জেলা <span class="required">*</span></label>
+          <div class="input-wrapper">
+            <span class="input-icon">📍</span>
+            <select id="districtSelect" class="form-control" onchange="handleDistrictChange()" required disabled>
+              <option value="">প্রথমে বিভাগ</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">থানা / উপজেলা <span class="required">*</span></label>
+          <div class="input-wrapper">
+            <span class="input-icon">📌</span>
+            <select id="thanaSelect" class="form-control" required disabled>
+              <option value="">প্রথমে জেলা</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit" id="submitBtn" class="btn-submit">
+        <span id="btnText">নিবন্ধন নিশ্চিত করুন 🚀</span>
+      </button>
+
+    </form>
+  </div>
+
+  <!-- Success Card -->
+  <div class="success-card" id="successContainer">
+    <div class="success-icon">✓</div>
+    <h2 class="success-title">মাশাআল্লাহ! সফলভাবে সম্পন্ন হয়েছে</h2>
+    <p class="success-desc">আপনার দাওয়াতি তথ্য কেন্দ্রীয় সিস্টেমে সংরক্ষিত হয়েছে। জাযাকাল্লাহু খাইরান।</p>
+    
+    <div class="worker-summary-box" id="summaryBox"></div>
+
+    <button type="button" class="btn-secondary" onclick="resetForm()">
+      <span>➕</span> আরেকজন কর্মীর তথ্য যুক্ত করুন
+    </button>
+  </div>
+
+  <div class="footer">
+    © আহবাব ম্যানেজমেন্ট সিস্টেম • নিরাপদ ও নির্ভরযোগ্য ডাটাবেজ
+  </div>
+</div>
+
+<script>
+  // BD Locations Data
+  const BD_LOCATIONS = {
+  'ঢাকা': {
+    'ঢাকা': [
+      'ধানমন্ডি', 'মিরপুর', 'গুলশান', 'মোহাম্মদপুর', 'তেজগাঁও', 'উত্তরা',
+      'বাড্ডা', 'খিলগাঁও', 'মতিঝিল', 'কদমতলী', 'লালবাগ', 'হাজারীবাগ',
+      'শ্যামপুর', 'সূত্রাপুর', 'ডেমরা', 'সবুজবাগ', 'যাত্রাবাড়ী', 'দক্ষিণখান',
+      'উত্তরখান', 'পল্লবী', 'শাহবাগ', 'রমনা', 'নিউমার্কেট', 'কাফরুল',
+      'তুরাগ', 'শাহ আলী', 'আদাবর', 'বংশাল', 'চকবাজার', 'কোতোয়ালি',
+      'সাভার', 'ধামরাই', 'কেরানীগঞ্জ', 'নবাবগঞ্জ', 'দোহার',
+    ],
+    'গাজীপুর': [
+      'গাজীপুর সদর', 'কালিয়াকৈর', 'কালীগঞ্জ', 'কাপাসিয়া', 'শ্রীপুর',
+      'টঙ্গী',
+    ],
+    'নারায়ণগঞ্জ': [
+      'নারায়ণগঞ্জ সদর', 'আড়াইহাজার', 'বন্দর', 'রূপগঞ্জ', 'সোনারগাঁও',
+    ],
+    'মানিকগঞ্জ': [
+      'মানিকগঞ্জ সদর', 'সিংগাইর', 'শিবালয়', 'সাটুরিয়া', 'হরিরামপুর',
+      'ঘিওর', 'দৌলতপুর',
+    ],
+    'মুন্সিগঞ্জ': [
+      'মুন্সিগঞ্জ সদর', 'শ্রীনগর', 'সিরাজদিখান', 'লৌহজং', 'টঙ্গীবাড়ী',
+      'গজারিয়া',
+    ],
+    'নরসিংদী': [
+      'নরসিংদী সদর', 'বেলাবো', 'মনোহরদী', 'পলাশ', 'রায়পুরা', 'শিবপুর',
+    ],
+    'টাঙ্গাইল': [
+      'টাঙ্গাইল সদর', 'সখীপুর', 'বাসাইল', 'মধুপুর', 'ঘাটাইল', 'কালিহাতী',
+      'নাগরপুর', 'মির্জাপুর', 'গোপালপুর', 'ভূঞাপুর', 'দেলদুয়ার', 'ধনবাড়ী',
+    ],
+    'কিশোরগঞ্জ': [
+      'কিশোরগঞ্জ সদর', 'ভৈরব', 'বাজিতপুর', 'হোসেনপুর', 'পাকুন্দিয়া',
+      'কুলিয়ারচর', 'কটিয়াদী', 'তাড়াইল', 'ইটনা', 'মিঠামইন', 'অষ্টগ্রাম',
+      'নিকলী', 'করিমগঞ্জ',
+    ],
+    'ফরিদপুর': [
+      'ফরিদপুর সদর', 'আলফাডাঙ্গা', 'বোয়ালমারী', 'সদরপুর', 'নগরকান্দা',
+      'ভাঙ্গা', 'চরভদ্রাসন', 'মধুখালী', 'সালথা',
+    ],
+    'মাদারীপুর': [
+      'মাদারীপুর সদর', 'কালকিনি', 'রাজৈর', 'শিবচর',
+    ],
+    'শরীয়তপুর': [
+      'শরীয়তপুর সদর', 'নড়িয়া', 'জাজিরা', 'গোসাইরহাট', 'ভেদরগঞ্জ', 'ডামুড্যা',
+    ],
+    'রাজবাড়ী': [
+      'রাজবাড়ী সদর', 'গোয়ালন্দ', 'পাংশা', 'বালিয়াকান্দি', 'কালুখালী',
+    ],
+    'গোপালগঞ্জ': [
+      'গোপালগঞ্জ সদর', 'কাশিয়ানী', 'কোটালীপাড়া', 'মুকসুদপুর', 'টুঙ্গিপাড়া',
+    ],
+  },
+
+  'চট্টগ্রাম': {
+    'চট্টগ্রাম': [
+      'চট্টগ্রাম সদর', 'পটিয়া', 'সীতাকুন্ড', 'মীরসরাই', 'সন্দ্বীপ',
+      'বাঁশখালী', 'আনোয়ারা', 'চন্দনাইশ', 'সাতকানিয়া', 'লোহাগাড়া',
+      'হাটহাজারী', 'রাউজান', 'ফটিকছড়ি', 'রাঙ্গুনিয়া', 'বোয়ালখালী',
+      'কর্ণফুলী', 'ডবলমুরিং', 'পাহাড়তলী', 'পাঁচলাইশ', 'বায়েজীদ',
+    ],
+    'কুমিল্লা': [
+      'কুমিল্লা সদর', 'কুমিল্লা সদর দক্ষিণ', 'দাউদকান্দি', 'মুরাদনগর',
+      'লাকসাম', 'দেবীদ্বার', 'বরুড়া', 'ব্রাহ্মণপাড়া', 'চান্দিনা',
+      'চৌদ্দগ্রাম', 'হোমনা', 'লালমাই', 'মেঘনা', 'নাঙ্গলকোট', 'তিতাস',
+      'বুড়িচং', 'মনোহরগঞ্জ',
+    ],
+    'চাঁদপুর': [
+      'চাঁদপুর সদর', 'মতলব উত্তর', 'মতলব দক্ষিণ', 'হাইমচর', 'কচুয়া',
+      'শাহরাস্তি', 'ফরিদগঞ্জ', 'হাজীগঞ্জ',
+    ],
+    'লক্ষ্মীপুর': [
+      'লক্ষ্মীপুর সদর', 'রায়পুর', 'রামগঞ্জ', 'রামগতি', 'কমলনগর',
+    ],
+    'নোয়াখালী': [
+      'নোয়াখালী সদর', 'সেনবাগ', 'বেগমগঞ্জ', 'চাটখিল', 'সোনাইমুড়ী',
+      'হাতিয়া', 'সুবর্ণচর', 'কবিরহাট', 'কোম্পানীগঞ্জ',
+    ],
+    'ফেনী': [
+      'ফেনী সদর', 'ছাগলনাইয়া', 'দাগনভূঞা', 'পরশুরাম', 'সোনাগাজী', 'ফুলগাজী',
+    ],
+    'ব্রাহ্মণবাড়িয়া': [
+      'ব্রাহ্মণবাড়িয়া সদর', 'আশুগঞ্জ', 'নবীনগর', 'সরাইল', 'কসবা',
+      'আখাউড়া', 'নাসিরনগর', 'বাঞ্ছারামপুর', 'বিজয়নগর',
+    ],
+    'রাঙ্গামাটি': [
+      'রাঙ্গামাটি সদর', 'কাপ্তাই', 'কাউখালী', 'বাঘাইছড়ি', 'বরকল',
+      'লংগদু', 'রাজস্থলী', 'বিলাইছড়ি', 'জুরাছড়ি', 'নানিয়ারচর',
+    ],
+    'খাগড়াছড়ি': [
+      'খাগড়াছড়ি সদর', 'দিঘীনালা', 'পানছড়ি', 'লক্ষীছড়ি', 'মহালছড়ি',
+      'মানিকছড়ি', 'রামগড়', 'মাটিরাঙ্গা', 'গুইমারা',
+    ],
+    'বান্দরবান': [
+      'বান্দরবান সদর', 'রুমা', 'রোয়াংছড়ি', 'থানচি', 'আলীকদম',
+      'লামা', 'নাইক্ষ্যংছড়ি',
+    ],
+    'কক্সবাজার': [
+      'কক্সবাজার সদর', 'চকরিয়া', 'উখিয়া', 'রামু', 'টেকনাফ',
+      'কুতুবদিয়া', 'মহেশখালী', 'পেকুয়া',
+    ],
+  },
+
+  'রাজশাহী': {
+    'রাজশাহী': [
+      'রাজশাহী সদর', 'বোয়ালিয়া', 'শাহমখদুম', 'রাজপাড়া', 'পবা',
+      'গোদাগাড়ী', 'তানোর', 'বাগমারা', 'চারঘাট', 'দুর্গাপুর', 'পুঠিয়া',
+      'মোহনপুর', 'বাঘা',
+    ],
+    'বগুড়া': [
+      'বগুড়া সদর', 'শেরপুর', 'শিবগঞ্জ', 'সারিয়াকান্দি', 'সোনাতলা',
+      'ধুনট', 'দুপচাঁচিয়া', 'গাবতলী', 'আদমদীঘি', 'নন্দীগ্রাম',
+      'কাহালু', 'শাজাহানপুর',
+    ],
+    'পাবনা': [
+      'পাবনা সদর', 'ঈশ্বরদী', 'আটঘরিয়া', 'ভাঙ্গুড়া', 'চাটমোহর',
+      'ফরিদপুর', 'সুজানগর', 'বেড়া', 'সাঁথিয়া',
+    ],
+    'নাটোর': [
+      'নাটোর সদর', 'বড়াইগ্রাম', 'গুরুদাসপুর', 'লালপুর', 'বাগাতিপাড়া',
+      'সিংড়া', 'নলডাঙ্গা',
+    ],
+    'সিরাজগঞ্জ': [
+      'সিরাজগঞ্জ সদর', 'বেলকুচি', 'চৌহালী', 'কামারখন্দ', 'কাজীপুর',
+      'রায়গঞ্জ', 'শাহজাদপুর', 'তাড়াশ', 'উল্লাপাড়া',
+    ],
+    'নওগাঁ': [
+      'নওগাঁ সদর', 'আত্রাই', 'বদলগাছী', 'ধামইরহাট', 'মহাদেবপুর',
+      'মান্দা', 'নিয়ামতপুর', 'পত্নীতলা', 'পোরশা', 'রাণীনগর', 'সাপাহার',
+    ],
+    'চাঁপাইনবাবগঞ্জ': [
+      'চাঁপাইনবাবগঞ্জ সদর', 'গোমস্তাপুর', 'নাচোল', 'ভোলাহাট', 'শিবগঞ্জ',
+    ],
+    'জয়পুরহাট': [
+      'জয়পুরহাট সদর', 'আক্কেলপুর', 'কালাই', 'ক্ষেতলাল', 'পাঁচবিবি',
+    ],
+  },
+
+  'খুলনা': {
+    'খুলনা': [
+      'খুলনা সদর', 'দৌলতপুর', 'খালিশপুর', 'সোনাডাঙ্গা', 'বটিয়াঘাটা',
+      'ডুমুরিয়া', 'ফুলতলা', 'কয়রা', 'পাইকগাছা', 'তেরখাদা',
+      'দাকোপ', 'রূপসা', 'দিঘলিয়া',
+    ],
+    'যশোর': [
+      'যশোর সদর', 'চৌগাছা', 'ঝিকরগাছা', 'কেশবপুর', 'মণিরামপুর',
+      'অভয়নগর', 'বাঘারপাড়া', 'শার্শা',
+    ],
+    'সাতক্ষীরা': [
+      'সাতক্ষীরা সদর', 'কলারোয়া', 'তালা', 'শ্যামনগর', 'আশাশুনি',
+      'দেবহাটা', 'কালীগঞ্জ',
+    ],
+    'মেহেরপুর': [
+      'মেহেরপুর সদর', 'মুজিবনগর', 'গাংনী',
+    ],
+    'নড়াইল': [
+      'নড়াইল সদর', 'লোহাগড়া', 'কালিয়া',
+    ],
+    'কুষ্টিয়া': [
+      'কুষ্টিয়া সদর', 'কুমারখালী', 'খোকসা', 'মিরপুর', 'ভেড়ামারা', 'দৌলতপুর',
+    ],
+    'মাগুরা': [
+      'মাগুরা সদর', 'শালিখা', 'শ্রীপুর', 'মোহাম্মদপুর',
+    ],
+    'চুয়াডাঙ্গা': [
+      'চুয়াডাঙ্গা সদর', 'আলমডাঙ্গা', 'দামুড়হুদা', 'জীবননগর',
+    ],
+    'ঝিনাইদাহ': [
+      'ঝিনাইদাহ সদর', 'কালীগঞ্জ', 'কোটচাঁদপুর', 'মহেশপুর', 'শৈলকুপা', 'হরিণাকুন্ডু',
+    ],
+    'বাগেরহাট': [
+      'বাগেরহাট সদর', 'চিতলমারী', 'ফকিরহাট', 'কচুয়া', 'মোল্লাহাট',
+      'মোংলা', 'মোরেলগঞ্জ', 'রামপাল', 'শরণখোলা',
+    ],
+  },
+
+  'বরিশাল': {
+    'বরিশাল': [
+      'বরিশাল সদর', 'বাবুগঞ্জ', 'বাকেরগঞ্জ', 'বানারীপাড়া', 'গৌরনদী',
+      'আগৈলঝাড়া', 'মেহেন্দিগঞ্জ', 'মুলাদী', 'হিজলা', 'উজিরপুর',
+    ],
+    'পটুয়াখালী': [
+      'পটুয়াখালী সদর', 'বাউফল', 'দশমিনা', 'দুমকি', 'কলাপাড়া',
+      'মির্জাগঞ্জ', 'গলাচিপা', 'রাঙ্গাবালী',
+    ],
+    'ভোলা': [
+      'ভোলা সদর', 'বোরহানউদ্দিন', 'চরফ্যাশন', 'দৌলতখান', 'লালমোহন',
+      'মনপুরা', 'তজুমদ্দিন',
+    ],
+    'পিরোজপুর': [
+      'পিরোজপুর সদর', 'ভাণ্ডারিয়া', 'কাউখালী', 'মঠবাড়িয়া', 'নাজিরপুর',
+      'নেছারাবাদ', 'ইন্দুরকানী',
+    ],
+    'ঝালকাঠি': [
+      'ঝালকাঠি সদর', 'কাঠালিয়া', 'নলছিটি', 'রাজাপুর',
+    ],
+    'বরগুনা': [
+      'বরগুনা সদর', 'আমতলী', 'বামনা', 'বেতাগী', 'পাথরঘাটা', 'তালতলী',
+    ],
+  },
+
+  'সিলেট': {
+    'সিলেট': [
+      'সিলেট সদর', 'বিশ্বনাথ', 'কোম্পানীগঞ্জ', 'গোলাপগঞ্জ', 'গোয়াইনঘাট',
+      'জৈন্তাপুর', 'কানাইঘাট', 'জকিগঞ্জ', 'বালাগঞ্জ', 'ওসমানীনগর',
+      'ফেঞ্চুগঞ্জ', 'বিয়ানীবাজার', 'দক্ষিণ সুরমা',
+    ],
+    'মৌলভীবাজার': [
+      'মৌলভীবাজার সদর', 'কমলগঞ্জ', 'কুলাউড়া', 'রাজনগর', 'শ্রীমঙ্গল',
+      'বড়লেখা', 'জুড়ী',
+    ],
+    'হবিগঞ্জ': [
+      'হবিগঞ্জ সদর', 'বাহুবল', 'বানিয়াচং', 'চুনারুঘাট', 'লাখাই',
+      'মাধবপুর', 'নবীগঞ্জ', 'আজমিরীগঞ্জ', 'শায়েস্তাগঞ্জ',
+    ],
+    'সুনামগঞ্জ': [
+      'সুনামগঞ্জ সদর', 'ছাতক', 'জগন্নাথপুর', 'দোয়ারাবাজার', 'তাহিরপুর',
+      'ধর্মপাশা', 'জামালগঞ্জ', 'শাল্লা', 'দিরাই', 'বিশ্বম্ভরপুর',
+      'মধ্যনগর',
+    ],
+  },
+
+  'রংপুর': {
+    'রংপুর': [
+      'রংপুর সদর', 'বদরগঞ্জ', 'গঙ্গাচড়া', 'কাউনিয়া', 'মিঠাপুকুর',
+      'পীরগঞ্জ', 'পীরগাছা', 'তারাগঞ্জ',
+    ],
+    'দিনাজপুর': [
+      'দিনাজপুর সদর', 'বিরামপুর', 'বিরগঞ্জ', 'বোচাগঞ্জ', 'চিরিরবন্দর',
+      'ফুলবাড়ী', 'ঘোড়াঘাট', 'হাকিমপুর', 'কাহারোল', 'খানসামা',
+      'নবাবগঞ্জ', 'পার্বতীপুর',
+    ],
+    'গাইবান্ধা': [
+      'গাইবান্ধা সদর', 'ফুলছড়ি', 'গোবিন্দগঞ্জ', 'পলাশবাড়ী', 'সাদুল্লাপুর',
+      'সাঘাটা', 'সুন্দরগঞ্জ',
+    ],
+    'কুড়িগ্রাম': [
+      'কুড়িগ্রাম সদর', 'ভুরুঙ্গামারী', 'চিলমারী', 'ফুলবাড়ী', 'নাগেশ্বরী',
+      'রাজারহাট', 'রৌমারী', 'উলিপুর', 'রাজিবপুর',
+    ],
+    'লালমনিরহাট': [
+      'লালমনিরহাট সদর', 'আদিতমারী', 'হাতীবান্ধা', 'কালীগঞ্জ', 'পাটগ্রাম',
+    ],
+    'নীলফামারী': [
+      'নীলফামারী সদর', 'ডিমলা', 'ডোমার', 'জলঢাকা', 'কিশোরগঞ্জ', 'সৈয়দপুর',
+    ],
+    'পঞ্চগড়': [
+      'পঞ্চগড় সদর', 'আটোয়ারী', 'বোদা', 'দেবীগঞ্জ', 'তেঁতুলিয়া',
+    ],
+    'ঠাকুরগাঁও': [
+      'ঠাকুরগাঁও সদর', 'বালিয়াডাঙ্গী', 'হরিপুর', 'পীরগঞ্জ', 'রাণীশংকৈল',
+    ],
+  },
+
+  'ময়মনসিংহ': {
+    'ময়মনসিংহ': [
+      'ময়মনসিংহ সদর', 'ত্রিশাল', 'ভালুকা', 'মুক্তাগাছা', 'ফুলবাড়িয়া',
+      'গফরগাঁও', 'গৌরীপুর', 'ঈশ্বরগঞ্জ', 'নান্দাইল', 'হালুয়াঘাট',
+      'ধোবাউড়া', 'ফুলপুর', 'তারাকান্দা',
+    ],
+    'জামালপুর': [
+      'জামালপুর সদর', 'বকশীগঞ্জ', 'দেওয়ানগঞ্জ', 'ইসলামপুর', 'মাদারগঞ্জ',
+      'মেলান্দহ', 'সরিষাবাড়ী',
+    ],
+    'শেরপুর': [
+      'শেরপুর সদর', 'ঝিনাইগাতী', 'নকলা', 'নালিতাবাড়ী', 'শ্রীবরদী',
+    ],
+    'নেত্রকোনা': [
+      'নেত্রকোনা সদর', 'আটপাড়া', 'বারহাট্টা', 'দুর্গাপুর', 'কলমাকান্দা',
+      'কেন্দুয়া', 'খালিয়াজুরী', 'মদন', 'মোহনগঞ্জ', 'পূর্বধলা',
+    ],
+  },
+};
+
+  const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxR8WA5ii-1tOxTOLjY_GuKDd9PlPpiHN3OHWO6hhCjz5a9T3Yf-VbwRklW2L26_ew6/exec';
+  const API_SECRET = 'tawhid1416';
+
+  // Initialize Divisions
+  document.addEventListener('DOMContentLoaded', () => {
+    const divSelect = document.getElementById('divisionSelect');
+    const divisions = Object.keys(BD_LOCATIONS);
+    divisions.forEach(div => {
+      const opt = document.createElement('option');
+      opt.value = div;
+      opt.textContent = div;
+      divSelect.appendChild(opt);
+    });
+  });
+
+  function handleDivisionChange() {
+    const div = document.getElementById('divisionSelect').value;
+    const distSelect = document.getElementById('districtSelect');
+    const thanaSelect = document.getElementById('thanaSelect');
+
+    distSelect.innerHTML = '<option value="">জেলা নির্বাচন করুন</option>';
+    thanaSelect.innerHTML = '<option value="">প্রথমে জেলা নির্বাচন</option>';
+    thanaSelect.disabled = true;
+
+    if (!div || !BD_LOCATIONS[div]) {
+      distSelect.disabled = true;
+      return;
+    }
+
+    const districts = Object.keys(BD_LOCATIONS[div]);
+    districts.forEach(d => {
+      const opt = document.createElement('option');
+      opt.value = d;
+      opt.textContent = d;
+      distSelect.appendChild(opt);
+    });
+    distSelect.disabled = false;
+  }
+
+  function handleDistrictChange() {
+    const div = document.getElementById('divisionSelect').value;
+    const dist = document.getElementById('districtSelect').value;
+    const thanaSelect = document.getElementById('thanaSelect');
+
+    thanaSelect.innerHTML = '<option value="">থানা / উপজেলা নির্বাচন করুন</option>';
+
+    if (!div || !dist || !BD_LOCATIONS[div] || !BD_LOCATIONS[div][dist]) {
+      thanaSelect.disabled = true;
+      return;
+    }
+
+    const thanas = BD_LOCATIONS[div][dist];
+    thanas.forEach(t => {
+      const opt = document.createElement('option');
+      opt.value = t;
+      opt.textContent = t;
+      thanaSelect.appendChild(opt);
+    });
+    thanaSelect.disabled = false;
+  }
+
+  function selectProfession(prof, btn) {
+    document.querySelectorAll('.chip-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('workerProfession').value = prof;
+  }
+
+  // বাংলা সংখ্যাকে ইংরেজি সংখ্যায় রূপান্তর
+  function toEnglishDigits(str) {
+    const bnToEn = {
+      '০':'0', '১':'1', '২':'2', '৩':'3', '৪':'4',
+      '৫':'5', '৬':'6', '৭':'7', '৮':'8', '৯':'9'
+    };
+    return str.replace(/[০-৯]/g, d => bnToEn[d] || d);
+  }
+
+  function formatPhone(input) {
+    input.value = toEnglishDigits(input.value);
+  }
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    const name = document.getElementById('workerName').value.trim();
+    const profession = document.getElementById('workerProfession').value.trim();
+    const mobile = toEnglishDigits(document.getElementById('workerMobile').value.trim());
+    const district = document.getElementById('districtSelect').value;
+    const thana = document.getElementById('thanaSelect').value;
+
+    if (!name || !profession || !mobile || !district || !thana) {
+      alert('অনুগ্রহ করে সকল প্রয়োজনীয় তথ্য সঠিকভাবে পূরণ করুন।');
+      return;
+    }
+
+    const cleanMobile = mobile.replace(/[^0-9]/g, '');
+    if (cleanMobile.length < 11) {
+      alert('অনুগ্রহ করে সঠিক ১১ ডিজিটের মোবাইল নম্বর লিখুন (যেমন: 017XXXXXXXX)');
+      return;
+    }
+
+    const address = district + ' / ' + thana;
+    const today = new Date();
+    const joinDate = today.toLocaleDateString('en-GB');
+
+    const submitBtn = document.getElementById('submitBtn');
+    const btnText = document.getElementById('btnText');
+    submitBtn.disabled = true;
+    btnText.innerHTML = '<span class="spinner"></span> তথ্য পাঠানো হচ্ছে...';
+
+    const payload = new URLSearchParams();
+    payload.append('action', 'save_dawati_worker');
+    payload.append('secret', API_SECRET);
+    payload.append('name', name);
+    payload.append('profession', profession);
+    payload.append('personalMobile', cleanMobile);
+    payload.append('address', address);
+    payload.append('status', 'সক্রিয় কর্মী');
+    payload.append('joinDate', joinDate);
+
+    try {
+      // Google Apps Script POST with no-cors
+      await fetch(APPS_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: payload,
+        keepalive: true
+      });
+
+      // Show summary and success state
+      document.getElementById('summaryBox').innerHTML = `
+        <div><strong>নাম:</strong> ${name}</div>
+        <div><strong>পেশা:</strong> ${profession}</div>
+        <div><strong>মোবাইল:</strong> ${cleanMobile}</div>
+        <div><strong>ঠিকানা:</strong> ${address}</div>
+        <div><strong>তারিখ:</strong> ${joinDate}</div>
+      `;
+
+      document.getElementById('formContainer').style.display = 'none';
+      document.getElementById('successContainer').style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    } catch (err) {
+      console.error(err);
+      alert('দুঃখিত, তথ্য জমা দেওয়া সম্ভব হয়নি। অনুগ্রহ করে আপনার ইন্টারনেট সংযোগ পরীক্ষা করে পুনরায় চেষ্টা করুন।');
+      submitBtn.disabled = false;
+      btnText.textContent = 'নিবন্ধন নিশ্চিত করুন 🚀';
+    }
+  }
+
+  function resetForm() {
+    document.getElementById('workerForm').reset();
+    document.querySelectorAll('.chip-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('districtSelect').disabled = true;
+    document.getElementById('thanaSelect').disabled = true;
+    document.getElementById('submitBtn').disabled = false;
+    document.getElementById('btnText').textContent = 'নিবন্ধন নিশ্চিত করুন 🚀';
+    document.getElementById('successContainer').style.display = 'none';
+    document.getElementById('formContainer').style.display = 'block';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+
+</body>
+</html>
