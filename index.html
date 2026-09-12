@@ -3,482 +3,303 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>দাওয়াতি কর্মী নিবন্ধন — আহবাব ম্যানেজমেন্ট সিস্টেম</title>
-  <meta name="description" content="হজরতজী মাওলানা সাদ কান্ধলভী (দা.বা.)-এর তত্ত্বাবধানে দাওয়াতি সাথী ও কর্মীদের তথ্য নিবন্ধন" />
-  <meta property="og:title" content="দাওয়াতি কর্মী নিবন্ধন ফরম" />
-  <meta property="og:description" content="দাওয়াতি সাথী ও কর্মীদের অনলাইন তথ্য নিবন্ধন ফরম" />
-  <meta property="og:type" content="website" />
-  <meta name="theme-color" content="#047857" />
+  <title>দাওয়াত</title>
+  <meta name="description" content="দাওয়াতি কর্মী নিবন্ধন" />
+  <meta name="theme-color" content="#ffffff" />
 
-  <!-- Google Fonts: Hind Siliguri -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
-
+  <!-- Kalpurush Font CDN -->
   <style>
-    :root {
-      --primary: #047857;
-      --primary-hover: #065f46;
-      --primary-light: #ecfdf5;
-      --accent: #d97706;
-      --bg: #f8fafc;
-      --card-bg: #ffffff;
-      --text-main: #0f172a;
-      --text-muted: #64748b;
-      --border: #e2e8f0;
-      --border-focus: #10b981;
-      --ring: rgba(16, 185, 129, 0.2);
-      --radius: 16px;
+    @font-face {
+      font-family: 'Kalpurush';
+      font-style: normal;
+      font-weight: 400;
+      src: url('https://fonts.maateen.me/kalpurush/Kalpurush-v0.258.woff2') format('woff2'),
+           url('https://fonts.maateen.me/kalpurush/Kalpurush-v0.258.ttf') format('truetype');
+      font-display: swap;
     }
 
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: 'Hind Siliguri', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      -webkit-tap-highlight-color: transparent;
+      font-family: 'Kalpurush', 'SolaimanLipi', -apple-system, sans-serif !important;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
     body {
-      background: linear-gradient(180deg, #f0fdf4 0%, #f8fafc 100%);
-      color: var(--text-main);
+      background-color: #f9fafb;
+      color: #111827;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: flex-start;
-      padding: 16px;
+      padding: 24px 12px 36px;
     }
 
-    .container {
+    .form-container {
       width: 100%;
-      max-width: 500px;
-      margin: 0 auto;
-      padding-bottom: 32px;
+      max-width: 440px;
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 24px 20px 22px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
     }
 
-    /* Header */
-    .brand-card {
-      background: linear-gradient(135deg, #047857 0%, #064e3b 100%);
-      color: #ffffff;
-      border-radius: var(--radius);
-      padding: 24px 20px;
-      text-align: center;
-      box-shadow: 0 10px 25px -5px rgba(4, 120, 87, 0.25), 0 8px 10px -6px rgba(4, 120, 87, 0.1);
-      margin-bottom: 20px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .brand-card::after {
-      content: '';
-      position: absolute;
-      top: -40px;
-      right: -40px;
-      width: 120px;
-      height: 120px;
-      background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 70%);
-      border-radius: 50%;
-    }
-
-    .brand-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: rgba(255, 255, 255, 0.15);
-      backdrop-filter: blur(8px);
-      padding: 4px 12px;
-      border-radius: 9999px;
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-      margin-bottom: 10px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-    }
-
-    .brand-title {
-      font-size: 22px;
+    /* শুধুমাত্র একটি শিরোনাম: "দাওয়াত" */
+    .page-title {
+      font-size: 26px;
       font-weight: 700;
-      line-height: 1.3;
-      margin-bottom: 6px;
-    }
-
-    .brand-subtitle {
-      font-size: 13px;
-      color: #d1fae5;
-      line-height: 1.5;
-      font-weight: 400;
-    }
-
-    /* Form Card */
-    .form-card {
-      background: var(--card-bg);
-      border-radius: var(--radius);
-      padding: 24px 20px;
-      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
-      border: 1px solid var(--border);
+      color: #111827;
+      text-align: center;
+      margin-bottom: 22px;
+      letter-spacing: -0.2px;
     }
 
     .form-group {
-      margin-bottom: 18px;
+      margin-bottom: 13px;
     }
 
     .form-label {
       display: block;
-      font-size: 14px;
+      font-size: 13.5px;
       font-weight: 600;
-      color: #334155;
-      margin-bottom: 6px;
+      color: #374151;
+      margin-bottom: 5px;
     }
 
-    .form-label .required {
-      color: #ef4444;
+    .required {
+      color: #dc2626;
       margin-left: 2px;
+      font-size: 12px;
     }
 
-    .input-wrapper {
-      position: relative;
-      display: flex;
-      align-items: center;
-    }
-
-    .input-icon {
-      position: absolute;
-      left: 14px;
-      color: #94a3b8;
-      font-size: 16px;
-      pointer-events: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .form-control {
+    /* ক্লিন, চিকন ও প্রফেশনাল ইনপুট বক্স */
+    .form-input {
       width: 100%;
-      height: 48px;
-      padding: 10px 14px 10px 42px;
-      font-size: 15px;
-      color: var(--text-main);
-      background-color: #f8fafc;
-      border: 1.5px solid var(--border);
-      border-radius: 12px;
+      height: 38px;
+      padding: 6px 11px;
+      font-size: 14.5px;
+      color: #111827;
+      background: #ffffff;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
       outline: none;
-      transition: all 0.2s ease;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
     }
 
-    .form-control:focus {
-      background-color: #ffffff;
-      border-color: var(--border-focus);
-      box-shadow: 0 0 0 4px var(--ring);
+    .form-input:focus {
+      border-color: #0f766e;
+      box-shadow: 0 0 0 2px rgba(15, 118, 110, 0.12);
     }
 
-    .form-control::placeholder {
-      color: #94a3b8;
-      font-size: 14px;
+    .form-input::placeholder {
+      color: #9ca3af;
+      font-size: 13.5px;
     }
 
-    /* Chip selector for professions */
-    .chips-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 10px;
-    }
-
-    .chip-btn {
-      background: #f1f5f9;
-      border: 1px solid #e2e8f0;
-      border-radius: 9999px;
-      padding: 6px 12px;
-      font-size: 13px;
-      font-weight: 500;
-      color: #475569;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      transition: all 0.15s ease;
-    }
-
-    .chip-btn:hover {
-      background: #e2e8f0;
-    }
-
-    .chip-btn.active {
-      background: #047857;
-      color: #ffffff;
-      border-color: #047857;
-      box-shadow: 0 2px 6px rgba(4, 120, 87, 0.25);
-    }
-
-    /* Grid for Location Selectors */
+    /* দুই কলাম লেআউট */
     .grid-2 {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 12px;
+      gap: 10px;
     }
 
-    select.form-control {
+    /* চিকন ড্রপডাউন */
+    select.form-input {
       appearance: none;
-      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%2364748b' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
-      background-position: right 10px center;
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+      background-position: right 8px center;
       background-repeat: no-repeat;
-      background-size: 18px 18px;
-      padding-right: 32px;
+      background-size: 15px 15px;
+      padding-right: 28px;
       cursor: pointer;
     }
 
-    /* Submit Button */
-    .btn-submit {
+    /* পেশা বাছাই করার মিনিমাল পিলস (জিরো ইমোজি) */
+    .pills-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-bottom: 7px;
+    }
+
+    .pill-item {
+      background: #f3f4f6;
+      border: 1px solid #e5e7eb;
+      border-radius: 4px;
+      padding: 3px 9px;
+      font-size: 12.5px;
+      font-weight: 500;
+      color: #4b5563;
+      cursor: pointer;
+      transition: all 0.12s ease;
+      user-select: none;
+    }
+
+    .pill-item:hover {
+      background: #e5e7eb;
+      color: #111827;
+    }
+
+    .pill-item.selected {
+      background: #0f766e;
+      border-color: #0f766e;
+      color: #ffffff;
+    }
+
+    /* জমা বাটন - মার্জিত ও স্লিম */
+    .submit-btn {
       width: 100%;
-      height: 52px;
-      background: linear-gradient(135deg, #047857 0%, #059669 100%);
+      height: 40px;
+      background: #0f766e;
       color: #ffffff;
       border: none;
-      border-radius: 12px;
-      font-size: 16px;
-      font-weight: 700;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      box-shadow: 0 4px 12px rgba(4, 120, 87, 0.3);
-      transition: all 0.2s ease;
-      margin-top: 24px;
-    }
-
-    .btn-submit:hover:not(:disabled) {
-      background: linear-gradient(135deg, #065f46 0%, #047857 100%);
-      transform: translateY(-1px);
-      box-shadow: 0 6px 16px rgba(4, 120, 87, 0.4);
-    }
-
-    .btn-submit:active:not(:disabled) {
-      transform: translateY(0);
-    }
-
-    .btn-submit:disabled {
-      opacity: 0.7;
-      cursor: not-allowed;
-    }
-
-    /* Spinner */
-    .spinner {
-      width: 20px;
-      height: 20px;
-      border: 3px solid rgba(255, 255, 255, 0.3);
-      border-top-color: #ffffff;
-      border-radius: 50%;
-      animation: spin 0.8s linear infinite;
-    }
-
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-
-    /* Success Card */
-    .success-card {
-      display: none;
-      text-align: center;
-      padding: 36px 20px;
-      background: var(--card-bg);
-      border-radius: var(--radius);
-      border: 1px solid var(--border);
-      box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05);
-    }
-
-    .success-icon {
-      width: 72px;
-      height: 72px;
-      background: #dcfce7;
-      color: #16a34a;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 36px;
-      margin: 0 auto 20px;
-      animation: bounce 0.6s ease;
-    }
-
-    @keyframes bounce {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.15); }
-    }
-
-    .success-title {
-      font-size: 22px;
-      font-weight: 700;
-      color: #15803d;
-      margin-bottom: 8px;
-    }
-
-    .success-desc {
-      font-size: 14px;
-      color: #64748b;
-      line-height: 1.6;
-      margin-bottom: 24px;
-    }
-
-    .worker-summary-box {
-      background: #f8fafc;
-      border: 1px dashed #cbd5e1;
-      border-radius: 12px;
-      padding: 14px;
-      text-align: left;
-      font-size: 13px;
-      color: #334155;
-      margin-bottom: 24px;
-    }
-
-    .worker-summary-box div {
-      margin-bottom: 4px;
-    }
-
-    .btn-secondary {
-      width: 100%;
-      height: 48px;
-      background: #f1f5f9;
-      color: #334155;
-      border: 1px solid #cbd5e1;
-      border-radius: 12px;
+      border-radius: 6px;
       font-size: 15px;
       font-weight: 600;
       cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      transition: all 0.2s;
+      transition: background-color 0.15s ease;
+      margin-top: 8px;
     }
 
-    .btn-secondary:hover {
-      background: #e2e8f0;
+    .submit-btn:hover:not(:disabled) {
+      background: #115e59;
     }
 
-    /* Footer */
-    .footer {
-      margin-top: 24px;
+    .submit-btn:disabled {
+      background: #9ca3af;
+      cursor: not-allowed;
+    }
+
+    /* সফলতার নোটিশ */
+    .success-view {
+      display: none;
       text-align: center;
-      font-size: 12px;
-      color: #94a3b8;
+      padding: 20px 10px;
+    }
+
+    .success-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: #0f766e;
+      margin-bottom: 6px;
+    }
+
+    .success-desc {
+      font-size: 14.5px;
+      color: #4b5563;
+      line-height: 1.5;
+      margin-bottom: 18px;
+    }
+
+    .summary-card {
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 6px;
+      padding: 12px;
+      text-align: left;
+      font-size: 13.5px;
+      color: #374151;
+      margin-bottom: 18px;
+      line-height: 1.6;
+    }
+
+    .btn-new {
+      display: inline-block;
+      padding: 7px 18px;
+      font-size: 13.5px;
+      font-weight: 600;
+      color: #0f766e;
+      background: #f0fdfa;
+      border: 1px solid #ccfbf1;
+      border-radius: 6px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .btn-new:hover {
+      background: #ccfbf1;
     }
   </style>
 </head>
 <body>
 
-<div class="container">
-  <!-- Header -->
-  <div class="brand-card">
-    <div class="brand-badge">
-      <span>🕌</span> আহবাব ম্যানেজমেন্ট সিস্টেম
-    </div>
-    <h1 class="brand-title">দাওয়াতি কর্মী নিবন্ধন</h1>
-    <p class="brand-subtitle">দাওয়াতি মেহনতের সার্বিক নজরদারি ও কর্মী ডাটাবেজ পোর্টালে আপনার তথ্য যুক্ত করুন</p>
-  </div>
+<div class="form-container">
+  <h1 class="page-title">দাওয়াত</h1>
 
-  <!-- Form -->
-  <div class="form-card" id="formContainer">
-    <form id="workerForm" onsubmit="handleSubmit(event)">
-      
-      <!-- Full Name -->
+  <div id="formSection">
+    <form id="dawatForm" onsubmit="submitForm(event)">
+
+      <!-- নাম -->
       <div class="form-group">
-        <label class="form-label" for="workerName">পূর্ণ নাম <span class="required">*</span></label>
-        <div class="input-wrapper">
-          <span class="input-icon">👤</span>
-          <input type="text" id="workerName" class="form-control" placeholder="আপনার নাম লিখুন" required />
-        </div>
+        <label class="form-label" for="workerName">নাম <span class="required">*</span></label>
+        <input type="text" id="workerName" class="form-input" placeholder="পূর্ণ নাম লিখুন" required />
       </div>
 
-      <!-- Profession -->
+      <!-- পেশা -->
       <div class="form-group">
-        <label class="form-label">পেশা নির্বাচন করুন <span class="required">*</span></label>
-        <div class="chips-container">
-          <button type="button" class="chip-btn" onclick="selectProfession('ইমাম ও খতিব', this)">🕌 ইমাম ও খতিব</button>
-          <button type="button" class="chip-btn" onclick="selectProfession('শিক্ষক / মুদাররিস', this)">📚 শিক্ষক / মুদাররিস</button>
-          <button type="button" class="chip-btn" onclick="selectProfession('ব্যবসায়ী', this)">💼 ব্যবসায়ী</button>
-          <button type="button" class="chip-btn" onclick="selectProfession('চাকরিজীবী', this)">🏢 চাকরিজীবী</button>
-          <button type="button" class="chip-btn" onclick="selectProfession('শিক্ষার্থী', this)">🎓 শিক্ষার্থী</button>
-          <button type="button" class="chip-btn" onclick="selectProfession('অন্যান্য', this)">✍️ অন্যান্য</button>
+        <label class="form-label">পেশা <span class="required">*</span></label>
+        <div class="pills-wrapper">
+          <button type="button" class="pill-item" onclick="pickProfession('ইমাম ও খতিব', this)">ইমাম ও খতিব</button>
+          <button type="button" class="pill-item" onclick="pickProfession('মুদাররিস', this)">মুদাররিস</button>
+          <button type="button" class="pill-item" onclick="pickProfession('ব্যবসায়ী', this)">ব্যবসায়ী</button>
+          <button type="button" class="pill-item" onclick="pickProfession('চাকরিজীবী', this)">চাকরিজীবী</button>
+          <button type="button" class="pill-item" onclick="pickProfession('শিক্ষার্থী', this)">শিক্ষার্থী</button>
+          <button type="button" class="pill-item" onclick="pickProfession('অন্যান্য', this)">অন্যান্য</button>
         </div>
-        <div class="input-wrapper">
-          <span class="input-icon">💼</span>
-          <input type="text" id="workerProfession" class="form-control" placeholder="পেশা বিস্তারিত লিখুন" required />
-        </div>
+        <input type="text" id="workerProfession" class="form-input" placeholder="পেশা লিখুন" required />
       </div>
 
-      <!-- Mobile Number -->
+      <!-- মোবাইল নম্বর -->
       <div class="form-group">
-        <label class="form-label" for="workerMobile">ব্যক্তিগত মোবাইল নম্বর <span class="required">*</span></label>
-        <div class="input-wrapper">
-          <span class="input-icon">📱</span>
-          <input type="tel" id="workerMobile" class="form-control" placeholder="017XXXXXXXX" oninput="formatPhone(this)" required />
-        </div>
+        <label class="form-label" for="workerMobile">মোবাইল নম্বর <span class="required">*</span></label>
+        <input type="tel" id="workerMobile" class="form-input" placeholder="01XXXXXXXXX" oninput="convertBengaliNumbers(this)" required />
       </div>
 
-      <!-- Location Section -->
-      <div class="form-group">
-        <label class="form-label">বিভাগ <span class="required">*</span></label>
-        <div class="input-wrapper">
-          <span class="input-icon">🗺️</span>
-          <select id="divisionSelect" class="form-control" onchange="handleDivisionChange()" required>
-            <option value="">বিভাগ নির্বাচন করুন</option>
+      <!-- ঠিকানা: জেলা ও থানা (এক লাইনে দুটি চিকন ড্রপডাউন) -->
+      <div class="grid-2">
+        <div class="form-group">
+          <label class="form-label" for="districtSelect">জেলা <span class="required">*</span></label>
+          <select id="districtSelect" class="form-input" onchange="onDistrictChange()" required>
+            <option value="">জেলা বাছাই</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="thanaSelect">থানা / উপজেলা <span class="required">*</span></label>
+          <select id="thanaSelect" class="form-input" required disabled>
+            <option value="">থানা বাছাই</option>
           </select>
         </div>
       </div>
 
-      <div class="grid-2">
-        <div class="form-group">
-          <label class="form-label">জেলা <span class="required">*</span></label>
-          <div class="input-wrapper">
-            <span class="input-icon">📍</span>
-            <select id="districtSelect" class="form-control" onchange="handleDistrictChange()" required disabled>
-              <option value="">প্রথমে বিভাগ</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label class="form-label">থানা / উপজেলা <span class="required">*</span></label>
-          <div class="input-wrapper">
-            <span class="input-icon">📌</span>
-            <select id="thanaSelect" class="form-control" required disabled>
-              <option value="">প্রথমে জেলা</option>
-            </select>
-          </div>
-        </div>
+      <!-- বিস্তারিত এলাকা / গ্রাম -->
+      <div class="form-group">
+        <label class="form-label" for="areaDetail">গ্রাম / এলাকা (ঐচ্ছিক)</label>
+        <input type="text" id="areaDetail" class="form-input" placeholder="গ্রাম বা মহল্লার নাম" />
       </div>
 
-      <!-- Submit Button -->
-      <button type="submit" id="submitBtn" class="btn-submit">
-        <span id="btnText">নিবন্ধন নিশ্চিত করুন 🚀</span>
-      </button>
-
+      <!-- সাবমিট বাটন -->
+      <button type="submit" id="submitBtn" class="submit-btn">জমা দিন</button>
     </form>
   </div>
 
-  <!-- Success Card -->
-  <div class="success-card" id="successContainer">
-    <div class="success-icon">✓</div>
-    <h2 class="success-title">মাশাআল্লাহ! সফলভাবে সম্পন্ন হয়েছে</h2>
-    <p class="success-desc">আপনার দাওয়াতি তথ্য কেন্দ্রীয় সিস্টেমে সংরক্ষিত হয়েছে। জাযাকাল্লাহু খাইরান।</p>
+  <!-- সফলতার বার্তা -->
+  <div id="successSection" class="success-view">
+    <div class="success-title">তথ্য সংরক্ষিত হয়েছে</div>
+    <p class="success-desc">আপনার দাওয়াতি তথ্য সফলভাবে কেন্দ্রীয় সিস্টেমে জমা হয়েছে। জাযাকাল্লাহু খাইরান।</p>
     
-    <div class="worker-summary-box" id="summaryBox"></div>
+    <div id="summaryCard" class="summary-card"></div>
 
-    <button type="button" class="btn-secondary" onclick="resetForm()">
-      <span>➕</span> আরেকজন কর্মীর তথ্য যুক্ত করুন
-    </button>
-  </div>
-
-  <div class="footer">
-    © আহবাব ম্যানেজমেন্ট সিস্টেম • নিরাপদ ও নির্ভরযোগ্য ডাটাবেজ
+    <button type="button" class="btn-new" onclick="restartForm()">আরেকটি তথ্য যুক্ত করুন</button>
   </div>
 </div>
 
 <script>
-  // BD Locations Data
-  const BD_LOCATIONS = {
+  const RAW_LOCATIONS = {
   'ঢাকা': {
     'ঢাকা': [
       'ধানমন্ডি', 'মিরপুর', 'গুলশান', 'মোহাম্মদপুর', 'তেজগাঁও', 'উত্তরা',
@@ -753,58 +574,40 @@
   },
 };
 
-  const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxR8WA5ii-1tOxTOLjY_GuKDd9PlPpiHN3OHWO6hhCjz5a9T3Yf-VbwRklW2L26_ew6/exec';
-  const API_SECRET = 'tawhid1416';
-
-  // Initialize Divisions
-  document.addEventListener('DOMContentLoaded', () => {
-    const divSelect = document.getElementById('divisionSelect');
-    const divisions = Object.keys(BD_LOCATIONS);
-    divisions.forEach(div => {
-      const opt = document.createElement('option');
-      opt.value = div;
-      opt.textContent = div;
-      divSelect.appendChild(opt);
+  // ফ্ল্যাট জেলা এবং থানা তালিকা প্রস্তুতকরণ
+  const DISTRICT_MAP = {};
+  Object.keys(RAW_LOCATIONS).forEach(division => {
+    Object.keys(RAW_LOCATIONS[division]).forEach(district => {
+      DISTRICT_MAP[district] = RAW_LOCATIONS[division][district];
     });
   });
 
-  function handleDivisionChange() {
-    const div = document.getElementById('divisionSelect').value;
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxR8WA5ii-1tOxTOLjY_GuKDd9PlPpiHN3OHWO6hhCjz5a9T3Yf-VbwRklW2L26_ew6/exec';
+  const API_KEY = 'tawhid1416';
+
+  // জেলা ড্রপডাউন লোড
+  document.addEventListener('DOMContentLoaded', () => {
     const distSelect = document.getElementById('districtSelect');
-    const thanaSelect = document.getElementById('thanaSelect');
-
-    distSelect.innerHTML = '<option value="">জেলা নির্বাচন করুন</option>';
-    thanaSelect.innerHTML = '<option value="">প্রথমে জেলা নির্বাচন</option>';
-    thanaSelect.disabled = true;
-
-    if (!div || !BD_LOCATIONS[div]) {
-      distSelect.disabled = true;
-      return;
-    }
-
-    const districts = Object.keys(BD_LOCATIONS[div]);
-    districts.forEach(d => {
+    const sortedDistricts = Object.keys(DISTRICT_MAP).sort((a, b) => a.localeCompare(b, 'bn'));
+    sortedDistricts.forEach(d => {
       const opt = document.createElement('option');
       opt.value = d;
       opt.textContent = d;
       distSelect.appendChild(opt);
     });
-    distSelect.disabled = false;
-  }
+  });
 
-  function handleDistrictChange() {
-    const div = document.getElementById('divisionSelect').value;
+  function onDistrictChange() {
     const dist = document.getElementById('districtSelect').value;
     const thanaSelect = document.getElementById('thanaSelect');
 
-    thanaSelect.innerHTML = '<option value="">থানা / উপজেলা নির্বাচন করুন</option>';
-
-    if (!div || !dist || !BD_LOCATIONS[div] || !BD_LOCATIONS[div][dist]) {
+    thanaSelect.innerHTML = '<option value="">থানা বাছাই</option>';
+    if (!dist || !DISTRICT_MAP[dist]) {
       thanaSelect.disabled = true;
       return;
     }
 
-    const thanas = BD_LOCATIONS[div][dist];
+    const thanas = DISTRICT_MAP[dist].slice().sort((a, b) => a.localeCompare(b, 'bn'));
     thanas.forEach(t => {
       const opt = document.createElement('option');
       opt.value = t;
@@ -814,67 +617,62 @@
     thanaSelect.disabled = false;
   }
 
-  function selectProfession(prof, btn) {
-    document.querySelectorAll('.chip-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    document.getElementById('workerProfession').value = prof;
+  function pickProfession(label, btn) {
+    document.querySelectorAll('.pill-item').forEach(p => p.classList.remove('selected'));
+    btn.classList.add('selected');
+    const input = document.getElementById('workerProfession');
+    input.value = label === 'অন্যান্য' ? '' : label;
+    if (label === 'অন্যান্য') {
+      input.focus();
+    }
   }
 
-  // বাংলা সংখ্যাকে ইংরেজি সংখ্যায় রূপান্তর
-  function toEnglishDigits(str) {
-    const bnToEn = {
-      '০':'0', '১':'1', '২':'2', '৩':'3', '৪':'4',
-      '৫':'5', '৬':'6', '৭':'7', '৮':'8', '৯':'9'
-    };
-    return str.replace(/[০-৯]/g, d => bnToEn[d] || d);
+  // বাংলা সংখ্যাকে তাৎক্ষণিক ইংরেজি সংখ্যায় রূপান্তর
+  function convertBengaliNumbers(input) {
+    const map = { '০':'0', '১':'1', '২':'2', '৩':'3', '৪':'4', '৫':'5', '৬':'6', '৭':'7', '৮':'8', '৯':'9' };
+    input.value = input.value.replace(/[০-৯]/g, d => map[d] || d);
   }
 
-  function formatPhone(input) {
-    input.value = toEnglishDigits(input.value);
-  }
-
-  async function handleSubmit(e) {
+  async function submitForm(e) {
     e.preventDefault();
 
     const name = document.getElementById('workerName').value.trim();
     const profession = document.getElementById('workerProfession').value.trim();
-    const mobile = toEnglishDigits(document.getElementById('workerMobile').value.trim());
+    const mobile = document.getElementById('workerMobile').value.trim();
     const district = document.getElementById('districtSelect').value;
     const thana = document.getElementById('thanaSelect').value;
+    const area = document.getElementById('areaDetail').value.trim();
 
     if (!name || !profession || !mobile || !district || !thana) {
-      alert('অনুগ্রহ করে সকল প্রয়োজনীয় তথ্য সঠিকভাবে পূরণ করুন।');
+      alert('অনুগ্রহ করে সকল প্রয়োজনীয় তথ্য পূরণ করুন।');
       return;
     }
 
     const cleanMobile = mobile.replace(/[^0-9]/g, '');
     if (cleanMobile.length < 11) {
-      alert('অনুগ্রহ করে সঠিক ১১ ডিজিটের মোবাইল নম্বর লিখুন (যেমন: 017XXXXXXXX)');
+      alert('সঠিক ১১ ডিজিটের মোবাইল নম্বর লিখুন।');
       return;
     }
 
-    const address = district + ' / ' + thana;
-    const today = new Date();
-    const joinDate = today.toLocaleDateString('en-GB');
+    const fullAddress = area ? `${district}, ${thana}, ${area}` : `${district}, ${thana}`;
+    const today = new Date().toLocaleDateString('en-GB');
 
-    const submitBtn = document.getElementById('submitBtn');
-    const btnText = document.getElementById('btnText');
-    submitBtn.disabled = true;
-    btnText.innerHTML = '<span class="spinner"></span> তথ্য পাঠানো হচ্ছে...';
+    const btn = document.getElementById('submitBtn');
+    btn.disabled = true;
+    btn.textContent = 'জমা হচ্ছে...';
 
     const payload = new URLSearchParams();
     payload.append('action', 'save_dawati_worker');
-    payload.append('secret', API_SECRET);
+    payload.append('secret', API_KEY);
     payload.append('name', name);
     payload.append('profession', profession);
     payload.append('personalMobile', cleanMobile);
-    payload.append('address', address);
+    payload.append('address', fullAddress);
     payload.append('status', 'সক্রিয় কর্মী');
-    payload.append('joinDate', joinDate);
+    payload.append('joinDate', today);
 
     try {
-      // Google Apps Script POST with no-cors
-      await fetch(APPS_SCRIPT_URL, {
+      await fetch(SCRIPT_URL, {
         method: 'POST',
         mode: 'no-cors',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -882,36 +680,32 @@
         keepalive: true
       });
 
-      // Show summary and success state
-      document.getElementById('summaryBox').innerHTML = `
+      document.getElementById('summaryCard').innerHTML = `
         <div><strong>নাম:</strong> ${name}</div>
         <div><strong>পেশা:</strong> ${profession}</div>
         <div><strong>মোবাইল:</strong> ${cleanMobile}</div>
-        <div><strong>ঠিকানা:</strong> ${address}</div>
-        <div><strong>তারিখ:</strong> ${joinDate}</div>
+        <div><strong>ঠিকানা:</strong> ${fullAddress}</div>
       `;
 
-      document.getElementById('formContainer').style.display = 'none';
-      document.getElementById('successContainer').style.display = 'block';
+      document.getElementById('formSection').style.display = 'none';
+      document.getElementById('successSection').style.display = 'block';
       window.scrollTo({ top: 0, behavior: 'smooth' });
 
     } catch (err) {
-      console.error(err);
-      alert('দুঃখিত, তথ্য জমা দেওয়া সম্ভব হয়নি। অনুগ্রহ করে আপনার ইন্টারনেট সংযোগ পরীক্ষা করে পুনরায় চেষ্টা করুন।');
-      submitBtn.disabled = false;
-      btnText.textContent = 'নিবন্ধন নিশ্চিত করুন 🚀';
+      alert('তথ্য জমা দেওয়া সম্ভব হয়নি। ইন্টারনেট সংযোগ পরীক্ষা করে পুনরায় চেষ্টা করুন।');
+      btn.disabled = false;
+      btn.textContent = 'জমা দিন';
     }
   }
 
-  function resetForm() {
-    document.getElementById('workerForm').reset();
-    document.querySelectorAll('.chip-btn').forEach(b => b.classList.remove('active'));
-    document.getElementById('districtSelect').disabled = true;
+  function restartForm() {
+    document.getElementById('dawatForm').reset();
+    document.querySelectorAll('.pill-item').forEach(p => p.classList.remove('selected'));
     document.getElementById('thanaSelect').disabled = true;
     document.getElementById('submitBtn').disabled = false;
-    document.getElementById('btnText').textContent = 'নিবন্ধন নিশ্চিত করুন 🚀';
-    document.getElementById('successContainer').style.display = 'none';
-    document.getElementById('formContainer').style.display = 'block';
+    document.getElementById('submitBtn').textContent = 'জমা দিন';
+    document.getElementById('successSection').style.display = 'none';
+    document.getElementById('formSection').style.display = 'block';
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 </script>
